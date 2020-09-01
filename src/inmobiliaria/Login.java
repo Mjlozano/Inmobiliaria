@@ -53,7 +53,7 @@ public class Login extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         consultar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        consultInm = new javax.swing.JButton();
         acciones = new javax.swing.JComboBox<>();
         ok = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
@@ -99,6 +99,7 @@ public class Login extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         enviarSoli = new javax.swing.JButton();
         regis = new javax.swing.JButton();
+        back = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         usertxt = new javax.swing.JTextField();
         passwdtxt = new javax.swing.JPasswordField();
@@ -144,11 +145,6 @@ public class Login extends javax.swing.JFrame {
 
             }
         ));
-        consultTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                consultTableMouseClicked(evt);
-            }
-        });
         jScrollPane2.setViewportView(consultTable);
 
         solConsult.setText("Consultar Solicitudes");
@@ -188,8 +184,13 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/search.png"))); // NOI18N
-        jButton3.setText("Consultar inmuebles");
+        consultInm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/search.png"))); // NOI18N
+        consultInm.setText("Consultar inmuebles");
+        consultInm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultInmActionPerformed(evt);
+            }
+        });
 
         acciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aprobar", "Cerrar" }));
 
@@ -245,7 +246,7 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(homeLayout.createSequentialGroup()
                         .addComponent(consultar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
+                        .addComponent(consultInm)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addInn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(28, Short.MAX_VALUE))
@@ -256,7 +257,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(consultInm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(consultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(addInn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(7, 7, 7)
@@ -583,6 +584,13 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        back.setText("Volver");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout catalogoLayout = new javax.swing.GroupLayout(catalogo.getContentPane());
         catalogo.getContentPane().setLayout(catalogoLayout);
         catalogoLayout.setHorizontalGroup(
@@ -590,6 +598,11 @@ public class Login extends javax.swing.JFrame {
             .addGroup(catalogoLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(catalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(catalogoLayout.createSequentialGroup()
+                        .addComponent(back)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(enviarSoli)
+                        .addGap(50, 50, 50))
                     .addGroup(catalogoLayout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
                         .addGap(32, 32, 32))
@@ -609,10 +622,6 @@ public class Login extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(regis)
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, catalogoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(enviarSoli)
-                .addGap(50, 50, 50))
         );
         catalogoLayout.setVerticalGroup(
             catalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -634,7 +643,9 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(enviarSoli, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(catalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(enviarSoli, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(back))
                 .addGap(20, 20, 20))
         );
 
@@ -805,6 +816,7 @@ public class Login extends javax.swing.JFrame {
         }
         return value;
     }
+
     private String getIdGeneral(int columna) {
         String value = "";
         try {
@@ -939,14 +951,6 @@ public class Login extends javax.swing.JFrame {
 
     private void solConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solConsultActionPerformed
         DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Inmueble", "Nombre", "Estado", "Tiempo", "Tipo"}, 0);
-        model.setRowCount(0);
-        model.setColumnCount(0);
-        model.addColumn("ID");
-        model.addColumn("Inmueble");
-        model.addColumn("Cliente");
-        model.addColumn("Estado");
-        model.addColumn("Tiempo");
-        model.addColumn("Tipo");
         try {
             st = conn.createStatement();
             rs = st.executeQuery("select idSolicitud, idinmueble,nombre, estado, tiempo, tipo_tran from solicitud, cliente where solicitud.idcliente = (select idcliente from cliente where numDoc = '" + numDocConsult.getText() + "' ) and solicitud.idcliente = cliente.idcliente");
@@ -961,10 +965,7 @@ public class Login extends javax.swing.JFrame {
                 do {
                     model.addRow(new Object[]{rs.getString("idSolicitud"), rs.getString("idinmueble"), rs.getString("nombre"), rs.getString("estado"), rs.getString("tiempo"), rs.getString("tipo_tran")});
                 } while (rs.next());
-                //while (rs.next()) {
 
-                //model.addRow(new Object[]{rs.getString("idSolicitud"), rs.getString("idinmueble"), rs.getString("nombre"), rs.getString("estado"), rs.getString("tiempo"), rs.getString("tipo_tran")});
-                //}
                 consultTable.setModel(model);
                 numDocConsult.setText("");
 
@@ -1004,15 +1005,10 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed
+
         DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Inmueble", "Nombre", "Estado", "Tiempo", "Tipo"}, 0);
-        model.setRowCount(0);
-        model.setColumnCount(0);
-        model.addColumn("ID");
-        model.addColumn("Inmueble");
-        model.addColumn("Cliente");
-        model.addColumn("Estado");
-        model.addColumn("Tiempo");
-        model.addColumn("Tipo");
+        ok.setVisible(true);
+        acciones.setVisible(true);
         try {
             st = conn.createStatement();
             rs = st.executeQuery("select idSolicitud, idinmueble,nombre, estado, tiempo, tipo_tran from solicitud, cliente where solicitud.idcliente = cliente.idcliente");
@@ -1023,7 +1019,6 @@ public class Login extends javax.swing.JFrame {
                         JOptionPane.WARNING_MESSAGE);
             } else {
 
-                System.out.println(rs.getString("idSolicitud") + " " + rs.getString("idinmueble") + " " + rs.getString("nombre") + " " + rs.getString("estado") + " " + rs.getString("tiempo") + " " + rs.getString("tipo_tran"));
                 do {
                     model.addRow(new Object[]{rs.getString("idSolicitud"), rs.getString("idinmueble"), rs.getString("nombre"), rs.getString("estado"), rs.getString("tiempo"), rs.getString("tipo_tran")});
                 } while (rs.next());
@@ -1035,38 +1030,80 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_consultarActionPerformed
 
-    private void consultTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultTableMouseClicked
-        acciones.setVisible(true);
-        ok.setVisible(true);
-    }//GEN-LAST:event_consultTableMouseClicked
+    private void actualizarSolicitud(java.awt.event.ActionEvent evt, String estado) {
+        try {
+            st = conn.createStatement();
+            st.executeUpdate("UPDATE solicitud SET estado = '" + estado + "' where idSolicitud = " + getIdGeneral(0));
+            consultarActionPerformed(evt);
+            JOptionPane.showMessageDialog(this,
+                    "Estado Actualizado",
+                    "Información",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void setCerrada() {
+        try {
+            st = conn.createStatement();
+            st.executeUpdate("UPDATE inmueble SET idcl = null where idinmueble = " + getIdGeneral(1));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void setDueño() {
+        try {
+            st = conn.createStatement();
+            st.executeUpdate("UPDATE inmueble SET idcl = (select idcliente from solicitud where idSolicitud = " + getIdGeneral(0) + ") where idinmueble = " + getIdGeneral(1));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
         if (acciones.getSelectedIndex() == 0) {
-            try {
-                st = conn.createStatement();
-                st.executeUpdate("UPDATE solicitud SET estado = 'Resuelta' where idSolicitud = "+getIdGeneral(0));
-                consultarActionPerformed(evt);
-                JOptionPane.showMessageDialog(this,
-                        "Estado Actualizado",
-                        "Información",
-                        JOptionPane.INFORMATION_MESSAGE);
-            } catch (SQLException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            setDueño();
+            actualizarSolicitud(evt, "Resuelta");
+
         } else {
-            try {
-                st = conn.createStatement();
-                st.executeUpdate("UPDATE solicitud SET estado = 'Cerrada' where idSolicitud = "+getIdGeneral(0));
-                consultarActionPerformed(evt);
-                JOptionPane.showMessageDialog(this,
-                        "Estado Actualizado",
-                        "Información",
-                        JOptionPane.INFORMATION_MESSAGE);
-            } catch (SQLException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+            setCerrada();
+            actualizarSolicitud(evt, "Cerrada");
         }
     }//GEN-LAST:event_okActionPerformed
+
+    private void consultInmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultInmActionPerformed
+        DefaultTableModel model = new DefaultTableModel(new String[]{"Inmueble", "Tipo", "Arriendo/Venta", "Estado"}, 0);
+        try {
+            String own = null;
+            ok.setVisible(false);
+            acciones.setVisible(false);
+            st = conn.createStatement();
+            rs = st.executeQuery("select idinmueble, tipo,arri_vent, idcl from inmueble");
+
+            while (rs.next()) {
+                own = rs.getString("idcl");
+                if (own == null){
+                    model.addRow(new Object[]{rs.getString("idinmueble"), rs.getString("tipo"), rs.getString("arri_vent"), "Disponible"});
+                }else{
+                    model.addRow(new Object[]{rs.getString("idinmueble"), rs.getString("tipo"), rs.getString("arri_vent"), "Vendido/Arrendado"});
+                }
+            }
+            consultTable.setModel(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_consultInmActionPerformed
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        this.dispose();
+        
+    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1091,7 +1128,9 @@ public class Login extends javax.swing.JFrame {
     private static javax.swing.JPanel ar_panel;
     private javax.swing.JTextField areatxt;
     private javax.swing.JComboBox<String> arri_vent;
+    private javax.swing.JButton back;
     private javax.swing.JFrame catalogo;
+    private javax.swing.JButton consultInm;
     private javax.swing.JTable consultTable;
     private javax.swing.JButton consultar;
     private javax.swing.JTextArea descrip;
@@ -1103,7 +1142,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField inmuConsult;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
