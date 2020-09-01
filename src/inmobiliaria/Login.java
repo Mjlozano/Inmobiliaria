@@ -14,10 +14,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author mjloz
- */
 public class Login extends javax.swing.JFrame {
 
     static Conexion SQL;
@@ -46,7 +42,21 @@ public class Login extends javax.swing.JFrame {
         addInn = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        consultTable = new javax.swing.JTable();
+        solConsult = new javax.swing.JButton();
+        numDocConsult = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        inmuConsult = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        consultar = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        acciones = new javax.swing.JComboBox<>();
+        ok = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
         newInn = new javax.swing.JFrame();
         jPanel4 = new javax.swing.JPanel();
         areatxt = new javax.swing.JTextField();
@@ -85,8 +95,10 @@ public class Login extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         nametxt = new javax.swing.JTextField();
         timetxt = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        enviarSoli = new javax.swing.JButton();
+        regis = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         usertxt = new javax.swing.JTextField();
         passwdtxt = new javax.swing.JPasswordField();
@@ -98,7 +110,7 @@ public class Login extends javax.swing.JFrame {
 
         home.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         home.setLocationByPlatform(true);
-        home.setMinimumSize(new java.awt.Dimension(731, 463));
+        home.setMinimumSize(new java.awt.Dimension(844, 468));
         home.setResizable(false);
 
         addInn.setText("Agregar inmueble");
@@ -121,7 +133,7 @@ public class Login extends javax.swing.JFrame {
             .addGap(0, 35, Short.MAX_VALUE)
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        consultTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -132,7 +144,64 @@ public class Login extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        consultTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                consultTableMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(consultTable);
+
+        solConsult.setText("Consultar Solicitudes");
+        solConsult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solConsultActionPerformed(evt);
+            }
+        });
+
+        numDocConsult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numDocConsultActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setText("Numero de doc:");
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel19.setText("Solicitudes del inmueble");
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel20.setText("Solicitudes del cliente");
+
+        jLabel21.setText("ID del inmueble:");
+
+        jButton2.setText("Consultar Solicitudes");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        consultar.setText("Consultar solicitudes");
+        consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarActionPerformed(evt);
+            }
+        });
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/search.png"))); // NOI18N
+        jButton3.setText("Consultar inmuebles");
+
+        acciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aprobar", "Cerrar" }));
+
+        ok.setText("OK");
+        ok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel22.setText("Acciones");
 
         javax.swing.GroupLayout homeLayout = new javax.swing.GroupLayout(home.getContentPane());
         home.getContentPane().setLayout(homeLayout);
@@ -141,22 +210,88 @@ public class Login extends javax.swing.JFrame {
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(homeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(addInn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGroup(homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(homeLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(homeLayout.createSequentialGroup()
+                                .addGap(77, 77, 77)
+                                .addComponent(jLabel19))
+                            .addGroup(homeLayout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addComponent(jLabel20))
+                            .addGroup(homeLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(homeLayout.createSequentialGroup()
+                                        .addComponent(numDocConsult, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(solConsult))
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel21)
+                                    .addGroup(homeLayout.createSequentialGroup()
+                                        .addComponent(acciones, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ok))
+                                    .addGroup(homeLayout.createSequentialGroup()
+                                        .addComponent(inmuConsult, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton2)
+                                            .addGroup(homeLayout.createSequentialGroup()
+                                                .addGap(1, 1, 1)
+                                                .addComponent(jLabel22))))
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(homeLayout.createSequentialGroup()
+                        .addComponent(consultar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addInn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         homeLayout.setVerticalGroup(
             homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(homeLayout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(consultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addInn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(7, 7, 7)
                 .addGroup(homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addInn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32))
+                    .addGroup(homeLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                        .addGap(38, 38, 38))
+                    .addGroup(homeLayout.createSequentialGroup()
+                        .addComponent(jLabel20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel18)
+                        .addGap(2, 2, 2)
+                        .addGroup(homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(solConsult)
+                            .addComponent(numDocConsult, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel21)
+                        .addGap(1, 1, 1)
+                        .addGroup(homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(inmuConsult, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2))
+                        .addGap(14, 14, 14)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addGroup(homeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ok, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(acciones, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
+        newInn.setLocationByPlatform(true);
         newInn.setMinimumSize(new java.awt.Dimension(654, 515));
         newInn.setResizable(false);
 
@@ -341,17 +476,25 @@ public class Login extends javax.swing.JFrame {
         );
 
         catalogo.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        catalogo.setLocationByPlatform(true);
         catalogo.setMinimumSize(new java.awt.Dimension(996, 575));
-        catalogo.setResizable(false);
 
         inmList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Tipo", "Area", "Antiguedad", "Arriendo/venta", "precio", "Amoblado", "Patio", "Piscina", "Descripcion"
+                "ID", "Tipo", "Area", "Antiguedad", "Arriendo/venta", "precio", "Amoblado", "Patio", "Piscina", "Descripcion"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(inmList);
 
         jLabel11.setText("Numero de documento:");
@@ -382,8 +525,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Hacer solicitud");
-
         jLabel15.setText("Tiempo(en meses) a arrendar:");
 
         javax.swing.GroupLayout ar_panelLayout = new javax.swing.GroupLayout(ar_panel);
@@ -402,10 +543,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(ar_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(timetxt, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(31, 31, 31))
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING)))
         );
         ar_panelLayout.setVerticalGroup(
             ar_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -414,9 +552,8 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(ar_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(ar_panelLayout.createSequentialGroup()
                         .addComponent(jLabel15)
-                        .addGap(4, 4, 4)
-                        .addComponent(timetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(timetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ar_panelLayout.createSequentialGroup()
                         .addGroup(ar_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
@@ -427,8 +564,24 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(ar_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tDoc)
                             .addComponent(nametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(56, 56, 56))
+                .addGap(0, 0, 0))
         );
+
+        jLabel17.setText("Para hacer la solicitud seleccione un inmueble de la lista");
+
+        enviarSoli.setText("Enviar solicitud");
+        enviarSoli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarSoliActionPerformed(evt);
+            }
+        });
+
+        regis.setText("Registrar");
+        regis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regisActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout catalogoLayout = new javax.swing.GroupLayout(catalogo.getContentPane());
         catalogo.getContentPane().setLayout(catalogoLayout);
@@ -436,26 +589,39 @@ public class Login extends javax.swing.JFrame {
             catalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(catalogoLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(catalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane3)
+                .addGroup(catalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(catalogoLayout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+                        .addGap(32, 32, 32))
                     .addGroup(catalogoLayout.createSequentialGroup()
                         .addGroup(catalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(numDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))
-                        .addGap(18, 18, 18)
-                        .addGroup(catalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(t_solicitud, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(catalogoLayout.createSequentialGroup()
+                                .addGroup(catalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(numDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel11))
+                                .addGap(18, 18, 18)
+                                .addGroup(catalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(t_solicitud, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel17))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ar_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32))
+                        .addComponent(ar_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(regis)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, catalogoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(enviarSoli)
+                .addGap(50, 50, 50))
         );
         catalogoLayout.setVerticalGroup(
             catalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, catalogoLayout.createSequentialGroup()
-                .addContainerGap(69, Short.MAX_VALUE)
+                .addContainerGap(57, Short.MAX_VALUE)
                 .addGroup(catalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, catalogoLayout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(catalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
                             .addComponent(jLabel12))
@@ -463,13 +629,17 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(catalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(numDoc)
                             .addComponent(t_solicitud, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(ar_panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ar_panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(regis, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(enviarSoli, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
         setName("login"); // NOI18N
         setResizable(false);
 
@@ -540,6 +710,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(133, Short.MAX_VALUE))
         );
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/search.png"))); // NOI18N
         jButton1.setText("Ver catalogo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -553,8 +724,8 @@ public class Login extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(88, 88, 88)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -562,8 +733,8 @@ public class Login extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(209, 209, 209))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(211, 211, 211))
         );
 
         pack();
@@ -575,6 +746,8 @@ public class Login extends javax.swing.JFrame {
 
     private void logInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInActionPerformed
         home.setVisible(true);
+        acciones.setVisible(false);
+        ok.setVisible(false);
         this.dispose();
 
     }//GEN-LAST:event_logInActionPerformed
@@ -597,12 +770,17 @@ public class Login extends javax.swing.JFrame {
         String amob = "'" + amobl.getSelectedItem() + "'";
         String patioo = "'" + patio.getSelectedItem() + "'";
         String piscinaa = "'" + piscina.getSelectedItem() + "'";
-        String descr = "'" + descrip.getText() + "'";
+        String descr = "";
 
-        System.out.println(inId.getText() + tipoIn + ", " + areaa + ", " + antigue + ", " + aV + ", " + precioo + ", " + amob + ", " + patioo + ", " + piscinaa + ", " + descr);
+        if (descrip.getText().isEmpty()) {
+            descr = "";
+        } else {
+            descr = "'" + descrip.getText() + "'";
+        }
+
         try {
             st = conn.createStatement();
-            st.executeUpdate("INSERT INTO inmueble values(" + inId.getText() + ", " + tipoIn + ", " + areaa + ", " + antigue + ", " + aV + ", " + precioo + ", " + amob + ", " + patioo + ", " + piscinaa + ", " + descr + ", null)");
+            st.executeUpdate("INSERT INTO inmueble values(" + generarIdInmueble() + ", " + tipoIn + ", " + areaa + ", " + antigue + ", " + aV + ", " + precioo + ", " + amob + ", " + patioo + ", " + piscinaa + ", " + descr + ", " + descr + ")");
             JOptionPane.showMessageDialog(this,
                     "El inmueble ha sido agregado correctamente");
 
@@ -611,16 +789,66 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addActionPerformed
 
+    private String getIdInm() {
+        String value = "";
+        try {
+            int column = 0;
+            int row = inmList.getSelectedRow();
+            value = inmList.getModel().getValueAt(row, column).toString();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "No has seleccionado un inmueble",
+                    "Advertencia",
+                    JOptionPane.WARNING_MESSAGE);
+            value = "";
+        }
+        return value;
+    }
+    private String getIdGeneral(int columna) {
+        String value = "";
+        try {
+            int column = columna;
+            int row = consultTable.getSelectedRow();
+            value = consultTable.getModel().getValueAt(row, column).toString();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "No has seleccionado un inmueble",
+                    "Advertencia",
+                    JOptionPane.WARNING_MESSAGE);
+            value = "";
+        }
+        return value;
+    }
+
+    private boolean isRegistered(String doc) {
+        boolean val = true;
+        try {
+            st = conn.createStatement();
+            rs = st.executeQuery("select * from cliente where numDoc = " + doc);
+            val = rs.next(); //next() returns false if there are no-rows retrieved 
+            if (val == false) {
+                return val;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return val;
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         catalogo.setVisible(true);
         this.dispose();
-
+        ar_panel.setVisible(false);
+        regis.setVisible(false);
         DefaultTableModel model = (DefaultTableModel) inmList.getModel();
+
         try {
             st = conn.createStatement();
             rs = st.executeQuery("select * from inmueble where idcl is null");
             while (rs.next()) {
-                Object[] row = {rs.getString("tipo"), rs.getString("area"), rs.getString("antiguedad"), rs.getString("arri_vent"), rs.getString("precio"), rs.getString("amoblado"), rs.getString("patio"), rs.getString("piscina"), rs.getString("descripcion")};
+                Object[] row = {rs.getString("idinmueble"), rs.getString("tipo"), rs.getString("area"), rs.getString("antiguedad"), rs.getString("arri_vent"), rs.getString("precio"), rs.getString("amoblado"), rs.getString("patio"), rs.getString("piscina"), rs.getString("descripcion")};
                 model.addRow(row);
             }
         } catch (SQLException ex) {
@@ -641,12 +869,204 @@ public class Login extends javax.swing.JFrame {
 
     private void t_solicitudMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_solicitudMouseClicked
 
-        if (t_solicitud.getSelectedIndex() == 1) {
-            ar_panel.setVisible(true);
-        } else {
-            ar_panel.setVisible(false);
-        }
+
     }//GEN-LAST:event_t_solicitudMouseClicked
+
+    public static int generarId() { //crea id aleatorio para las solicitudes
+        return (int) (100000 * Math.random());
+    }
+
+    public static int generarIdUser() { //crea id aleatorio para los usuarios
+        return (int) (1000 * Math.random());
+    }
+
+    public static int generarIdInmueble() { //crea id aleatorio para los inmuebles
+        return (int) (10000 * Math.random());
+    }
+
+
+    private void enviarSoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarSoliActionPerformed
+
+        if (isRegistered(numDoc.getText())) {
+            if (!"".equals(getIdInm())) {
+                try {
+                    ar_panel.setVisible(false);
+                    regis.setVisible(false);
+                    st = conn.createStatement();
+                    st.executeUpdate("INSERT INTO solicitud values (" + generarId() + ",  (select idcliente from cliente where numDoc = '" + numDoc.getText() + "'), " + getIdInm() + ", " + "'Pendiente'" + ", '" + timetxt.getText() + "', '" + t_solicitud.getSelectedItem() + "')");
+                    JOptionPane.showMessageDialog(this,
+                            "Solicitud enviada con exito",
+                            "Información",
+                            JOptionPane.WARNING_MESSAGE);
+                } catch (SQLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Parece que no estas registrado, te pediremos unos datos para hacer tu registro.",
+                    "Advertencia",
+                    JOptionPane.WARNING_MESSAGE);
+            ar_panel.setVisible(true);
+            regis.setVisible(true);
+        }
+
+    }//GEN-LAST:event_enviarSoliActionPerformed
+
+    private void regisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regisActionPerformed
+
+        try {
+            int idUser = generarIdUser();
+            st = conn.createStatement();
+            st.executeUpdate("INSERT INTO cliente values(" + idUser + ", '" + tDoc.getSelectedItem().toString() + "', '" + numDoc.getText() + "', '" + nametxt.getText() + "')");
+
+            JOptionPane.showMessageDialog(this,
+                    "Usuario Registrado",
+                    "Información",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+            ar_panel.setVisible(false);
+            regis.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_regisActionPerformed
+
+    private void numDocConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numDocConsultActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numDocConsultActionPerformed
+
+    private void solConsultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solConsultActionPerformed
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Inmueble", "Nombre", "Estado", "Tiempo", "Tipo"}, 0);
+        model.setRowCount(0);
+        model.setColumnCount(0);
+        model.addColumn("ID");
+        model.addColumn("Inmueble");
+        model.addColumn("Cliente");
+        model.addColumn("Estado");
+        model.addColumn("Tiempo");
+        model.addColumn("Tipo");
+        try {
+            st = conn.createStatement();
+            rs = st.executeQuery("select idSolicitud, idinmueble,nombre, estado, tiempo, tipo_tran from solicitud, cliente where solicitud.idcliente = (select idcliente from cliente where numDoc = '" + numDocConsult.getText() + "' ) and solicitud.idcliente = cliente.idcliente");
+            if (rs.next() == false) {
+                JOptionPane.showMessageDialog(this,
+                        "No se encontraron solicitudes",
+                        "Advertencia",
+                        JOptionPane.WARNING_MESSAGE);
+            } else {
+
+                System.out.println(rs.getString("idSolicitud") + " " + rs.getString("idinmueble") + " " + rs.getString("nombre") + " " + rs.getString("estado") + " " + rs.getString("tiempo") + " " + rs.getString("tipo_tran"));
+                do {
+                    model.addRow(new Object[]{rs.getString("idSolicitud"), rs.getString("idinmueble"), rs.getString("nombre"), rs.getString("estado"), rs.getString("tiempo"), rs.getString("tipo_tran")});
+                } while (rs.next());
+                //while (rs.next()) {
+
+                //model.addRow(new Object[]{rs.getString("idSolicitud"), rs.getString("idinmueble"), rs.getString("nombre"), rs.getString("estado"), rs.getString("tiempo"), rs.getString("tipo_tran")});
+                //}
+                consultTable.setModel(model);
+                numDocConsult.setText("");
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_solConsultActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) consultTable.getModel();
+        model.setRowCount(0);
+        model.setColumnCount(0);
+        model.addColumn("ID");
+        model.addColumn("N° de solicitudes");
+        try {
+            st = conn.createStatement();
+            rs = st.executeQuery("SELECT COUNT(*) as cuenta FROM solicitud where idinmueble = " + inmuConsult.getText());
+            if (rs.next() == false) {
+                JOptionPane.showMessageDialog(this,
+                        "No se encontraron solicitudes",
+                        "Advertencia",
+                        JOptionPane.WARNING_MESSAGE);
+            } else {
+
+                Object[] row = {inmuConsult.getText(), rs.getString("cuenta")};
+                inmuConsult.setText("");
+                model.addRow(row);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Inmueble", "Nombre", "Estado", "Tiempo", "Tipo"}, 0);
+        model.setRowCount(0);
+        model.setColumnCount(0);
+        model.addColumn("ID");
+        model.addColumn("Inmueble");
+        model.addColumn("Cliente");
+        model.addColumn("Estado");
+        model.addColumn("Tiempo");
+        model.addColumn("Tipo");
+        try {
+            st = conn.createStatement();
+            rs = st.executeQuery("select idSolicitud, idinmueble,nombre, estado, tiempo, tipo_tran from solicitud, cliente where solicitud.idcliente = cliente.idcliente");
+            if (rs.next() == false) {
+                JOptionPane.showMessageDialog(this,
+                        "No se encontraron solicitudes",
+                        "Advertencia",
+                        JOptionPane.WARNING_MESSAGE);
+            } else {
+
+                System.out.println(rs.getString("idSolicitud") + " " + rs.getString("idinmueble") + " " + rs.getString("nombre") + " " + rs.getString("estado") + " " + rs.getString("tiempo") + " " + rs.getString("tipo_tran"));
+                do {
+                    model.addRow(new Object[]{rs.getString("idSolicitud"), rs.getString("idinmueble"), rs.getString("nombre"), rs.getString("estado"), rs.getString("tiempo"), rs.getString("tipo_tran")});
+                } while (rs.next());
+                consultTable.setModel(model);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_consultarActionPerformed
+
+    private void consultTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultTableMouseClicked
+        acciones.setVisible(true);
+        ok.setVisible(true);
+    }//GEN-LAST:event_consultTableMouseClicked
+
+    private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
+        if (acciones.getSelectedIndex() == 0) {
+            try {
+                st = conn.createStatement();
+                st.executeUpdate("UPDATE solicitud SET estado = 'Resuelta' where idSolicitud = "+getIdGeneral(0));
+                consultarActionPerformed(evt);
+                JOptionPane.showMessageDialog(this,
+                        "Estado Actualizado",
+                        "Información",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } catch (SQLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            try {
+                st = conn.createStatement();
+                st.executeUpdate("UPDATE solicitud SET estado = 'Cerrada' where idSolicitud = "+getIdGeneral(0));
+                consultarActionPerformed(evt);
+                JOptionPane.showMessageDialog(this,
+                        "Estado Actualizado",
+                        "Información",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } catch (SQLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_okActionPerformed
 
     /**
      * @param args the command line arguments
@@ -663,6 +1083,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> acciones;
     private javax.swing.JButton add;
     private javax.swing.JButton addInn;
     private javax.swing.JComboBox<String> amobl;
@@ -671,13 +1092,18 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField areatxt;
     private javax.swing.JComboBox<String> arri_vent;
     private javax.swing.JFrame catalogo;
+    private javax.swing.JTable consultTable;
+    private javax.swing.JButton consultar;
     private javax.swing.JTextArea descrip;
     private javax.swing.JLabel descrtxt;
+    private javax.swing.JButton enviarSoli;
     private javax.swing.JFrame home;
     private javax.swing.JTextField inId;
     private javax.swing.JTable inmList;
+    private javax.swing.JTextField inmuConsult;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -686,7 +1112,13 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -701,16 +1133,20 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton logIn;
     private javax.swing.JTextField nametxt;
     private javax.swing.JFrame newInn;
     private javax.swing.JTextField numDoc;
+    private javax.swing.JTextField numDocConsult;
+    private javax.swing.JButton ok;
     private javax.swing.JPasswordField passwdtxt;
     private javax.swing.JComboBox<String> patio;
     private javax.swing.JComboBox<String> piscina;
     private javax.swing.JTextField preciotxt;
     private javax.swing.JLabel prlabel;
+    private javax.swing.JButton regis;
+    private javax.swing.JButton solConsult;
     private javax.swing.JComboBox<String> tDoc;
     private javax.swing.JComboBox<String> t_solicitud;
     private javax.swing.JTextField timetxt;

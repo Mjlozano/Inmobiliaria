@@ -5,14 +5,23 @@
  */
 package inmobiliaria;
 
+import static inmobiliaria.Login.SQL;
+import static inmobiliaria.Login.conn;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Inmobiliaria {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static int generarNombre() {
+        return (int) (10000 * Math.random());
     }
-    
+
+    public static void main(String[] args) throws SQLException {
+        
+        System.out.println(generarNombre());
+        System.out.println(generarNombre());
+    }
+
 }
