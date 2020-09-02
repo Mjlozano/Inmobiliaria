@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class Conexion {
 private static final String USERNAME = "root";
-    private static final String PASSWORD = "freischalten";
+    private static final String PASSWORD = ""; //poner la contraseña correspondiente
     private static final String URL = "jdbc:mysql://localhost:3306/inmobiliaria";
 
     public static Connection getConnection() throws SQLException {
