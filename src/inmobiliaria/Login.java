@@ -80,8 +80,6 @@ public class Login extends javax.swing.JFrame {
         add = new javax.swing.JButton();
         arri_vent = new javax.swing.JComboBox<>();
         amobl = new javax.swing.JComboBox<>();
-        inId = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
         catalogo = new javax.swing.JFrame();
         jScrollPane3 = new javax.swing.JScrollPane();
         inmList = new javax.swing.JTable();
@@ -99,7 +97,6 @@ public class Login extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         enviarSoli = new javax.swing.JButton();
         regis = new javax.swing.JButton();
-        back = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         usertxt = new javax.swing.JTextField();
         passwdtxt = new javax.swing.JPasswordField();
@@ -389,8 +386,6 @@ public class Login extends javax.swing.JFrame {
 
         amobl.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
 
-        jLabel16.setText("ID:");
-
         javax.swing.GroupLayout newInnLayout = new javax.swing.GroupLayout(newInn.getContentPane());
         newInn.getContentPane().setLayout(newInnLayout);
         newInnLayout.setHorizontalGroup(
@@ -417,12 +412,7 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(newInnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(descrtxt)
-                            .addGroup(newInnLayout.createSequentialGroup()
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(newInnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(inId, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel16)))))
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel4)
                     .addGroup(newInnLayout.createSequentialGroup()
                         .addGap(146, 146, 146)
@@ -443,11 +433,7 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(areatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(newInnLayout.createSequentialGroup()
-                        .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inId, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -584,13 +570,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        back.setText("Volver");
-        back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout catalogoLayout = new javax.swing.GroupLayout(catalogo.getContentPane());
         catalogo.getContentPane().setLayout(catalogoLayout);
         catalogoLayout.setHorizontalGroup(
@@ -599,8 +578,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(catalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(catalogoLayout.createSequentialGroup()
-                        .addComponent(back)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(enviarSoli)
                         .addGap(50, 50, 50))
                     .addGroup(catalogoLayout.createSequentialGroup()
@@ -643,9 +621,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(catalogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enviarSoli, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(back))
+                .addComponent(enviarSoli, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
@@ -756,10 +732,18 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_usertxtActionPerformed
 
     private void logInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInActionPerformed
-        home.setVisible(true);
-        acciones.setVisible(false);
-        ok.setVisible(false);
-        this.dispose();
+
+        if (usertxt.getText().equalsIgnoreCase("admin") && passwdtxt.getText().equalsIgnoreCase("admin")) {
+            home.setVisible(true);
+            acciones.setVisible(false);
+            ok.setVisible(false);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Contraseña o usuario incorrecto",
+                    "Advertencia",
+                    JOptionPane.WARNING_MESSAGE);
+        }
 
     }//GEN-LAST:event_logInActionPerformed
 
@@ -781,24 +765,47 @@ public class Login extends javax.swing.JFrame {
         String amob = "'" + amobl.getSelectedItem() + "'";
         String patioo = "'" + patio.getSelectedItem() + "'";
         String piscinaa = "'" + piscina.getSelectedItem() + "'";
-        String descr = "";
+        String descr = "''";
 
         if (descrip.getText().isEmpty()) {
-            descr = "";
+            descr = "''";
         } else {
             descr = "'" + descrip.getText() + "'";
         }
 
         try {
-            st = conn.createStatement();
-            st.executeUpdate("INSERT INTO inmueble values(" + generarIdInmueble() + ", " + tipoIn + ", " + areaa + ", " + antigue + ", " + aV + ", " + precioo + ", " + amob + ", " + patioo + ", " + piscinaa + ", " + descr + ", " + descr + ")");
-            JOptionPane.showMessageDialog(this,
-                    "El inmueble ha sido agregado correctamente");
+            if (allGood()) {
+                st = conn.createStatement();
+                st.executeUpdate("INSERT INTO inmueble values(" + generarIdInmueble() + ", " + tipoIn + ", " + areaa + ", " + antigue + ", " + aV + ", " + precioo + ", " + amob + ", " + patioo + ", " + piscinaa + ", " + descr + ", " + "null" + ")");
+                JOptionPane.showMessageDialog(this,
+                        "El inmueble ha sido agregado correctamente");
+                cleantxt();
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Ingrese todos los campos",
+                        "Advertencia",
+                        JOptionPane.WARNING_MESSAGE);
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addActionPerformed
+
+    private boolean allGood() {
+        if (areatxt.getText().isEmpty() || antigtxt.getText().isEmpty() || preciotxt.getText().isEmpty()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private void cleantxt() {
+        areatxt.setText("");
+        antigtxt.setText("");
+        preciotxt.setText("");
+        descrip.setText("");
+    }
 
     private String getIdInm() {
         String value = "";
@@ -859,10 +866,21 @@ public class Login extends javax.swing.JFrame {
         try {
             st = conn.createStatement();
             rs = st.executeQuery("select * from inmueble where idcl is null");
-            while (rs.next()) {
-                Object[] row = {rs.getString("idinmueble"), rs.getString("tipo"), rs.getString("area"), rs.getString("antiguedad"), rs.getString("arri_vent"), rs.getString("precio"), rs.getString("amoblado"), rs.getString("patio"), rs.getString("piscina"), rs.getString("descripcion")};
-                model.addRow(row);
+
+            if (rs.next()) {
+
+                do {
+                    Object[] row = {rs.getString("idinmueble"), rs.getString("tipo"), rs.getString("area"), rs.getString("antiguedad"), rs.getString("arri_vent"), rs.getString("precio"), rs.getString("amoblado"), rs.getString("patio"), rs.getString("piscina"), rs.getString("descripcion")};
+                    model.addRow(row);
+                } while (rs.next());
+
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "No se encontraron inmuebles registrados",
+                        "Información",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
+
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1087,9 +1105,9 @@ public class Login extends javax.swing.JFrame {
 
             while (rs.next()) {
                 own = rs.getString("idcl");
-                if (own == null){
+                if (own == null) {
                     model.addRow(new Object[]{rs.getString("idinmueble"), rs.getString("tipo"), rs.getString("arri_vent"), "Disponible"});
-                }else{
+                } else {
                     model.addRow(new Object[]{rs.getString("idinmueble"), rs.getString("tipo"), rs.getString("arri_vent"), "Vendido/Arrendado"});
                 }
             }
@@ -1099,11 +1117,6 @@ public class Login extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_consultInmActionPerformed
-
-    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        this.dispose();
-        
-    }//GEN-LAST:event_backActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1128,7 +1141,6 @@ public class Login extends javax.swing.JFrame {
     private static javax.swing.JPanel ar_panel;
     private javax.swing.JTextField areatxt;
     private javax.swing.JComboBox<String> arri_vent;
-    private javax.swing.JButton back;
     private javax.swing.JFrame catalogo;
     private javax.swing.JButton consultInm;
     private javax.swing.JTable consultTable;
@@ -1137,7 +1149,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel descrtxt;
     private javax.swing.JButton enviarSoli;
     private javax.swing.JFrame home;
-    private javax.swing.JTextField inId;
     private javax.swing.JTable inmList;
     private javax.swing.JTextField inmuConsult;
     private javax.swing.JButton jButton1;
@@ -1149,7 +1160,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;

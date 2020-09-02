@@ -14,14 +14,10 @@ import java.sql.Statement;
 
 public class Inmobiliaria {
 
-    public static int generarNombre() {
-        return (int) (10000 * Math.random());
-    }
+ 
 
     public static void main(String[] args) throws SQLException {
-        
-        System.out.println(generarNombre());
-        System.out.println(generarNombre());
+
     }
 
 }
